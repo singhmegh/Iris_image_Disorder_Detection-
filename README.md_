@@ -1,0 +1,47 @@
+# Iris Image Disorder Detection 
+
+## Project Overview
+Develop a simple AI prototype that can detect eye disorders from iris images (Healthy vs Diseased) using transfer learning. The task is to demonstrate understanding of image preprocessing, model loading, training, and explainability.
+
+The pipeline detects:
+- Healthy iris  
+- Diseased iris (various eye disorders grouped together like cataract/glaucoma/ diabetic_retinopathy)
+
+## Dataset
+- Source:https://www.kaggle.com/datasets/gunavenkatdoddi/eye-diseases-classification
+
+## Train test model
+- Split: 80% training, 20% validation
+- Images resized to 224x224 and normalized.
+
+## Methodology
+
+### 1. Preprocessing
+- Resized images to 224x224 pixels.
+- Normalized pixel values to [0,1].
+- Train/validation split using `ImageDataGenerator`.
+
+### 2. Model
+- Transfer Learning with MobileNetV2 (pre-trained on ImageNet)
+- Last layer replaced with a binary classifier:
+  - Dense(128, ReLU)
+  - Dense(1, Sigmoid)
+- Compiled with `binary_crossentropy` loss and `Adam` optimizer.
+
+### 3. Training
+- Trained for 3 epochs (demo) with batch size 32.
+- Training/validation accuracy and loss tracked.
+
+### 4. Evaluation
+- Accuracy and confusion matrix used to evaluate performance.
+- Training & validation plots visualize model learning over epochs.
+
+### 5. Explainability
+- Grad-CAM heatmaps generated to visualize model focus areas on the iris.
+- Example images:
+  - 2 healthy
+  - 2 diseased
+- Highlights iris regions contributing to model predictions.
+
+### outcome
+- User can put the image and get the result.
